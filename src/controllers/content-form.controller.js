@@ -81,10 +81,33 @@ const deleteFormFields = async (req, res) => {
   }
 };
 
+const editFormFieldsById = async (req, res) => {
+  try {
+    const form = await contentFormService.editFormFieldsById(
+      req.params.formId,
+      req.params.formFieldsId,
+      req.body
+    );
+    if (!form) {
+      throw new HTTPError('Form not found', 404);
+    }
+    res.status(200).json({
+      message: 'Form field updated successfully',
+      data: form,
+    });
+  } catch (error) {
+    if (error instanceof HTTPError) {
+      return res.status(401).json({ message: error.message });
+    }
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   getAllForm,
   createForm,
   getFormById,
   addFormFields,
   deleteFormFields,
+  editFormFieldsById,
 };

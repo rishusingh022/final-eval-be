@@ -7,5 +7,6 @@ router.post('/', formController.createForm);
 router.get('/:formId', formController.getFormById);
 router.put('/:formId', formController.addFormFields);
 router.delete('/:formId', formController.deleteFormFields);
+router.put('/:formId/:formFieldsId', formController.editFormFieldsById);
 
 module.exports = router;
