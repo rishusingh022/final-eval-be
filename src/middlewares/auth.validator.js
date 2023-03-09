@@ -12,8 +12,6 @@ const validateToken = async (req, res, next) => {
     req.user = data;
     next();
   } catch (error) {
-    console.log(token);
-    console.error(error);
     return res.status(401).json({ message: error.message });
   }
 };
