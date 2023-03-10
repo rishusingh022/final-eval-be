@@ -1,4 +1,6 @@
 const { contentForm } = require('../../database/models/');
+const contentFormServices = require('./content-form-responses.services.js');
+const { contentFormResponse } = require('../../database/models');
 
 const getAllForm = async () => {
   const forms = await contentForm.findAll();
@@ -9,6 +11,10 @@ const createForm = async (form) => {
   const newForm = await contentForm.create({
     formName: form.formName,
     formFields: [],
+  });
+  contentFormResponse.create({
+    formName: form.formName,
+    formResponses: [],
   });
   return newForm;
 };
@@ -38,6 +44,8 @@ const addFormFields = async (formId, fields) => {
     },
     { where: { id: formId } }
   );
+  console.log(form);
+  contentFormServices.updateFromFieldUtils(form.formName, fields);
   return updatedForm;
 };
 

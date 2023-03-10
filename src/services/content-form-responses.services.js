@@ -70,10 +70,11 @@ const deleteFormResponse = async (formid, body) => {
   if (!formResponses) {
     return null;
   }
+  console.log(formResponses.formResponses);
   const updatedFormResponse = await contentFormResponse.update(
     {
       formResponses: formResponses.formResponses.filter(
-        (response) => response.id !== parseInt(responseId)
+        (response) => parseInt(response.id) !== parseInt(responseId)
       ),
     },
     { where: { id: formid } }
@@ -89,7 +90,6 @@ const getFormResponseById = async (formid) => {
 };
 
 const getSpecificPersonResponse = async (formid, responseId) => {
-
   const formResponses = await contentFormResponse.findOne({
     where: { id: formid },
   });
@@ -102,6 +102,42 @@ const getSpecificPersonResponse = async (formid, responseId) => {
   return specificResponse;
 };
 
+const updateFromFieldUtils = async (formName, fields) => {
+  const formResponse = await contentFormResponse.findOne({
+    where: { formName: formName },
+  });
+  if (!formResponse) {
+    return null;
+  }
+  if (formResponse.formResponses.length === 0) {
+    const updatedFormResponse = await contentFormResponse.update(
+      {
+        formResponses: [
+          {
+            id: 1,
+            [Object.keys(fields)[0]]: `${fields[Object.keys(fields)[0]]}`,
+          },
+        ],
+      },
+      { where: { formName: formName } }
+    );
+    console.log(updatedFormResponse);
+  } else {
+    const updatedFormResponse = await contentFormResponse.update(
+      {
+        formResponses: [
+          {
+            ...formResponse.formResponses[0],
+            [Object.keys(fields)[0]]: `${fields[Object.keys(fields)[0]]}`,
+          },
+          ...formResponse.formResponses.slice(1),
+        ],
+      },
+      { where: { formName: formName } }
+    );
+    console.log(updatedFormResponse);
+  }
+};
 module.exports = {
   getAllFormResponses,
   addFormResponse,
@@ -109,4 +145,5 @@ module.exports = {
   deleteFormResponse,
   getFormResponseById,
   getSpecificPersonResponse,
+  updateFromFieldUtils,
 };
