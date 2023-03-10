@@ -70,7 +70,7 @@ const deleteFormFields = async (req, res) => {
       throw new HTTPError('Form not found', 404);
     }
     res.status(200).json({
-      message: 'Form updated successfully',
+      message: 'Form field deleted successfully',
       data: form,
     });
   } catch (error) {

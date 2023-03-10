@@ -198,4 +198,51 @@ describe('Content Form Controller', () => {
       expect(mockRes.json).toHaveBeenCalledWith({ message: undefined });
     });
   });
+  describe('deleteFormFields', () => {
+    it('should return 200 status code and form', async () => {
+      const form = {};
+      jest
+        .spyOn(contentFormService, 'deleteFormFields')
+        .mockResolvedValue(form);
+      const mockRes = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn(),
+      };
+      const mockReq = { body: {}, params: { id: 1 } };
+      await contentFormController.deleteFormFields(mockReq, mockRes);
+      expect(mockRes.status).toHaveBeenCalledWith(200);
+      expect(mockRes.json).toHaveBeenCalledWith({
+        message: 'Form field deleted successfully',
+        data: form,
+      });
+    });
+    it('should return 404 status code and error message when form not found', async () => {
+      const errorMessage = 'Error';
+      jest
+        .spyOn(contentFormService, 'deleteFormFields')
+        .mockRejectedValue(new HTTPError(errorMessage, 404));
+      const mockRes = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn(),
+      };
+      const mockReq = { body: {}, params: { id: 1 } };
+      await contentFormController.deleteFormFields(mockReq, mockRes);
+      expect(mockRes.status).toHaveBeenCalledWith(404);
+      expect(mockRes.json).toHaveBeenCalledWith({ message: errorMessage });
+    });
+    it('should return 500 status code and error message when something went wrong', async () => {
+      const errorMessage = 'Error';
+      jest
+        .spyOn(contentFormService, 'deleteFormFields')
+        .mockRejectedValue(errorMessage);
+      const mockRes = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn(),
+      };
+      const mockReq = { body: {}, params: { id: 1 } };
+      await contentFormController.deleteFormFields(mockReq, mockRes);
+      expect(mockRes.status).toHaveBeenCalledWith(500);
+      expect(mockRes.json).toHaveBeenCalledWith({ message: undefined });
+    });
+  });
 });
