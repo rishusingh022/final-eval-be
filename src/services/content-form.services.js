@@ -47,7 +47,6 @@ const deleteFormFields = async (formId, formFieldsName) => {
     return null;
   }
   const updatedFormFields = form.formFields.filter((field) => {
-    console.log(field);
     let key = Object.keys(field)[0];
     return key !== formFieldsName;
   });
