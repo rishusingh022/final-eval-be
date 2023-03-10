@@ -1,6 +1,6 @@
 const contentFormService = require('../../src/services/content-form.services');
 const contentFormController = require('../../src/controllers/content-form.controller');
-const { HTTPError } = require('../../src/utils/errorHandler');
+
 describe('Content Form Controller', () => {
   describe('getAllForm', () => {
     it('should return 200 status code and all forms', async () => {
@@ -78,10 +78,7 @@ describe('Content Form Controller', () => {
       });
     });
     it('should return 404 status code and error message when form not found', async () => {
-      const errorMessage = 'Error';
-      jest
-        .spyOn(contentFormService, 'getFormById')
-        .mockRejectedValue(new HTTPError(errorMessage, 404));
+      jest.spyOn(contentFormService, 'getFormById').mockResolvedValue(null);
       const mockRes = {
         status: jest.fn().mockReturnThis(),
         json: jest.fn(),
@@ -89,7 +86,7 @@ describe('Content Form Controller', () => {
       const mockReq = { params: { id: 1 } };
       await contentFormController.getFormById(mockReq, mockRes);
       expect(mockRes.status).toHaveBeenCalledWith(404);
-      expect(mockRes.json).toHaveBeenCalledWith({ message: errorMessage });
+      expect(mockRes.json).toHaveBeenCalledWith({ message: 'Form not found' });
     });
     it('should return 500 status code and error message when something went wrong', async () => {
       const errorMessage = 'Error';
@@ -123,10 +120,7 @@ describe('Content Form Controller', () => {
       });
     });
     it('should return 404 status code and error message when form not found', async () => {
-      const errorMessage = 'Error';
-      jest
-        .spyOn(contentFormService, 'addFormFields')
-        .mockRejectedValue(new HTTPError(errorMessage, 404));
+      jest.spyOn(contentFormService, 'addFormFields').mockResolvedValue(null);
       const mockRes = {
         status: jest.fn().mockReturnThis(),
         json: jest.fn(),
@@ -134,7 +128,7 @@ describe('Content Form Controller', () => {
       const mockReq = { body: {}, params: { id: 1 } };
       await contentFormController.addFormFields(mockReq, mockRes);
       expect(mockRes.status).toHaveBeenCalledWith(404);
-      expect(mockRes.json).toHaveBeenCalledWith({ message: errorMessage });
+      expect(mockRes.json).toHaveBeenCalledWith({ message: 'Form not found' });
     });
     it('should return 500 status code and error message when something went wrong', async () => {
       const errorMessage = 'Error';
@@ -170,10 +164,9 @@ describe('Content Form Controller', () => {
       });
     });
     it('should return 404 status code and error message when form not found', async () => {
-      const errorMessage = 'Error';
       jest
         .spyOn(contentFormService, 'editFormFieldsById')
-        .mockRejectedValue(new HTTPError(errorMessage, 404));
+        .mockResolvedValue(null);
       const mockRes = {
         status: jest.fn().mockReturnThis(),
         json: jest.fn(),
@@ -181,7 +174,7 @@ describe('Content Form Controller', () => {
       const mockReq = { body: {}, params: { id: 1 } };
       await contentFormController.editFormFieldsById(mockReq, mockRes);
       expect(mockRes.status).toHaveBeenCalledWith(404);
-      expect(mockRes.json).toHaveBeenCalledWith({ message: errorMessage });
+      expect(mockRes.json).toHaveBeenCalledWith({ message: 'Form not found' });
     });
     it('should return 500 status code and error message when something went wrong', async () => {
       const errorMessage = 'Error';
@@ -217,10 +210,9 @@ describe('Content Form Controller', () => {
       });
     });
     it('should return 404 status code and error message when form not found', async () => {
-      const errorMessage = 'Error';
       jest
         .spyOn(contentFormService, 'deleteFormFields')
-        .mockRejectedValue(new HTTPError(errorMessage, 404));
+        .mockResolvedValue(null);
       const mockRes = {
         status: jest.fn().mockReturnThis(),
         json: jest.fn(),
@@ -228,7 +220,7 @@ describe('Content Form Controller', () => {
       const mockReq = { body: {}, params: { id: 1 } };
       await contentFormController.deleteFormFields(mockReq, mockRes);
       expect(mockRes.status).toHaveBeenCalledWith(404);
-      expect(mockRes.json).toHaveBeenCalledWith({ message: errorMessage });
+      expect(mockRes.json).toHaveBeenCalledWith({ message: 'Form not found' });
     });
     it('should return 500 status code and error message when something went wrong', async () => {
       const errorMessage = 'Error';
