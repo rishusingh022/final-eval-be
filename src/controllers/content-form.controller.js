@@ -33,7 +33,7 @@ const getFormById = async (req, res) => {
     });
   } catch (error) {
     if (error instanceof HTTPError) {
-      return res.status(401).json({ message: error.message });
+      return res.status(404).json({ message: error.message });
     }
     res.status(500).json({ message: error.message });
   }
@@ -54,7 +54,7 @@ const addFormFields = async (req, res) => {
     });
   } catch (error) {
     if (error instanceof HTTPError) {
-      return res.status(401).json({ message: error.message });
+      return res.status(404).json({ message: error.message });
     }
     res.status(500).json({ message: error.message });
   }
@@ -75,7 +75,7 @@ const deleteFormFields = async (req, res) => {
     });
   } catch (error) {
     if (error instanceof HTTPError) {
-      return res.status(401).json({ message: error.message });
+      return res.status(404).json({ message: error.message });
     }
     res.status(500).json({ message: error.message });
   }
@@ -97,7 +97,7 @@ const editFormFieldsById = async (req, res) => {
     });
   } catch (error) {
     if (error instanceof HTTPError) {
-      return res.status(401).json({ message: error.message });
+      return res.status(404).json({ message: error.message });
     }
     res.status(500).json({ message: error.message });
   }
