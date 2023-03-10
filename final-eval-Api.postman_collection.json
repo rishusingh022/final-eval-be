@@ -1,0 +1,362 @@
+{
+	"info": {
+		"_postman_id": "72f3ad0b-719d-4106-bdfb-a567eb31ea15",
+		"name": "final-eval-Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14047608"
+	},
+	"item": [
+		{
+			"name": "getAllForms",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYyZjJmMmYyLWYyZjItZjJmMi1mMmYyLWYyZjJmMmYyZjJmMiIsImVtYWlsIjoidXNlckBnbWFpbC5jb20iLCJpYXQiOjE2Nzg0NTY4MzksImV4cCI6MTY3ODQ2MDQzOX0.sFWIqNJke4VxGyxkRxaKnrDQMqiRIkhYM0ggKb-lIR8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/api/content-form/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"content-form",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createForm",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"formName\": \"case_studies\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/content-form/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"content-form",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getFormById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/content-form/8f5afd3c-b6e7-4357-9724-39c7923f7c3e",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"content-form",
+						"8f5afd3c-b6e7-4357-9724-39c7923f7c3e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateFormFields",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \n  \"Song\":\"Text\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/content-form/8f5afd3c-b6e7-4357-9724-39c7923f7c3e",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"content-form",
+						"8f5afd3c-b6e7-4357-9724-39c7923f7c3e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteFormField",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fieldName\":\"fields\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/content-form/c9e9d268-505d-4b1a-9f5d-42199578fbf4",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"content-form",
+						"c9e9d268-505d-4b1a-9f5d-42199578fbf4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllFormResponses",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYyZjJmMmYyLWYyZjItZjJmMi1mMmYyLWYyZjJmMmYyZjJmMiIsImVtYWlsIjoidXNlckBnbWFpbC5jb20iLCJpYXQiOjE2Nzg0NTY4MzksImV4cCI6MTY3ODQ2MDQzOX0.sFWIqNJke4VxGyxkRxaKnrDQMqiRIkhYM0ggKb-lIR8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/content-form-responses",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"content-form-responses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addFormResponse",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"formName\":\"Company-Profile\",\n    \"formResponse\": {\n        \"fieldName\":\"Pranav\",\n        \"Revenue\":12345,\n        \"Contact Email\":\"test\",\n        \"Phone Number\":12345,\n        \"Addess\":\"test\",\n        \"PinCode\":12345\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/content-form-responses",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"content-form-responses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateFormResponse",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"responseId\": 1,\n    \"formResponse\": {\n        \"Name\": \"Swapnil kumar singh\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/content-form-responses/eebecb37-6ea3-4c36-9471-9b22fb039d0b",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"content-form-responses",
+						"eebecb37-6ea3-4c36-9471-9b22fb039d0b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteFormResponse",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"responseId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/content-form-responses/eebecb37-6ea3-4c36-9471-9b22fb039d0b",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"content-form-responses",
+						"eebecb37-6ea3-4c36-9471-9b22fb039d0b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getFormResponsesById",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYyZjJmMmYyLWYyZjItZjJmMi1mMmYyLWYyZjJmMmYyZjJmMiIsImVtYWlsIjoidXNlckBnbWFpbC5jb20iLCJpYXQiOjE2Nzg0NTY4MzksImV4cCI6MTY3ODQ2MDQzOX0.sFWIqNJke4VxGyxkRxaKnrDQMqiRIkhYM0ggKb-lIR8",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/api/content-form-responses/ac95ca9d-a8ee-4338-904c-1a3365f0c37a",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"content-form-responses",
+						"ac95ca9d-a8ee-4338-904c-1a3365f0c37a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getSpecificPersonResponse",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/content-form-responses/eebecb37-6ea3-4c36-9471-9b22fb039d0b/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"content-form-responses",
+						"eebecb37-6ea3-4c36-9471-9b22fb039d0b",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "editFormFieldsById",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Name\": \"string\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/content-form/c9e9d268-505d-4b1a-9f5d-42199578fbf4/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"content-form",
+						"c9e9d268-505d-4b1a-9f5d-42199578fbf4",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
