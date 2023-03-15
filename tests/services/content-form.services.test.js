@@ -27,7 +27,7 @@ describe('Content Form Service', () => {
     expect(result).toEqual(null);
   });
   it('should add field to form when formId and fields are provided', async () => {
-    const form = { id: 1, formFields: [] };
+    const form = { formName: 'Form', id: 1, formFields: [] };
     const fields = { name: 'Name' };
     jest.spyOn(contentForm, 'findOne').mockResolvedValue(form);
     jest.spyOn(contentForm, 'update').mockResolvedValue(form);
@@ -42,7 +42,7 @@ describe('Content Form Service', () => {
     expect(result).toEqual(null);
   });
   it('should delete field from form when formId and formFieldsName are provided', async () => {
-    const form = { id: 1, formFields: [{ name: 'Name' }] };
+    const form = { formName: 'Form', id: 1, formFields: [{ name: 'Name' }] };
     const formFieldsName = 'name';
     jest.spyOn(contentForm, 'findOne').mockResolvedValue(form);
     jest.spyOn(contentForm, 'update').mockResolvedValue(form);
