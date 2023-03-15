@@ -39,8 +39,12 @@ describe('Content Form Response Service', () => {
   });
   it('should update form response when responseId and formResponse are provided', async () => {
     const formId = 1;
-    jest.spyOn(contentFormResponse, 'findOne').mockResolvedValue(mockFormResponseWithName);
-    jest.spyOn(contentFormResponse, 'update').mockResolvedValue(mockFormResponseWithName);
+    jest
+      .spyOn(contentFormResponse, 'findOne')
+      .mockResolvedValue(mockFormResponseWithName);
+    jest
+      .spyOn(contentFormResponse, 'update')
+      .mockResolvedValue(mockFormResponseWithName);
     const result = await contentFormResponseService.updateFormResponse(
       formId,
       mockBodyWithResponseId
@@ -50,7 +54,9 @@ describe('Content Form Response Service', () => {
   it('should update form response when responseId and formResponse are provided', async () => {
     const formId = 1;
     jest.spyOn(contentFormResponse, 'findOne').mockResolvedValue(null);
-    jest.spyOn(contentFormResponse, 'update').mockResolvedValue(mockFormResponseWithName);
+    jest
+      .spyOn(contentFormResponse, 'update')
+      .mockResolvedValue(mockFormResponseWithName);
     const result = await contentFormResponseService.updateFormResponse(
       formId,
       mockBodyWithResponseId
@@ -60,8 +66,12 @@ describe('Content Form Response Service', () => {
   it('should delete form response when formId is provided and body is provided', async () => {
     const formid = 1;
     const body = { responseId: 1 };
-    jest.spyOn(contentFormResponse, 'findOne').mockResolvedValue(mockFormResponseWithName);
-    jest.spyOn(contentFormResponse, 'update').mockResolvedValue(mockFormResponseWithName);
+    jest
+      .spyOn(contentFormResponse, 'findOne')
+      .mockResolvedValue(mockFormResponseWithName);
+    jest
+      .spyOn(contentFormResponse, 'update')
+      .mockResolvedValue(mockFormResponseWithName);
     const result = await contentFormResponseService.deleteFormResponse(
       formid,
       body
@@ -89,7 +99,9 @@ describe('Content Form Response Service', () => {
   it('should get specific form response when formId and formResponseId are provided', async () => {
     const mockFormId = 1;
     const mockFormResponseId = 1;
-    jest.spyOn(contentFormResponse, 'findOne').mockResolvedValue(mockFormResponseWithName);
+    jest
+      .spyOn(contentFormResponse, 'findOne')
+      .mockResolvedValue(mockFormResponseWithName);
     const result = await contentFormResponseService.getSpecificPersonResponse(
       mockFormId,
       mockFormResponseId
@@ -99,11 +111,71 @@ describe('Content Form Response Service', () => {
   it('should return null when formId and formResponseId is invalid', async () => {
     const mockFormId = 1;
     const mockFormResponseId = 1;
-    jest.spyOn(contentFormResponse, 'findOne').mockResolvedValue(mockFormResponseWithName);
+    jest
+      .spyOn(contentFormResponse, 'findOne')
+      .mockResolvedValue(mockFormResponseWithName);
     const result = await contentFormResponseService.getSpecificPersonResponse(
       mockFormId,
       mockFormResponseId
     );
     expect(result).toEqual(...mockFormResponseWithName.formResponses);
+  });
+  it('should update when formName and fields are provided', async () => {
+    const formResponse = {
+      formName: 'Form',
+      id: 1,
+      formResponses: [
+        {
+          name: 'Name',
+          value: 'value',
+        },
+      ],
+    };
+    const formName = 'Form';
+    const fields = { name: 'Name' };
+    jest.spyOn(contentFormResponse, 'findOne').mockResolvedValue(formResponse);
+    jest.spyOn(contentFormResponse, 'update').mockResolvedValue(formResponse);
+    const result = await contentFormResponseService.updateFromFieldUtils(
+      formName,
+      fields
+    );
+    expect(result).toEqual(undefined);
+  });
+  it('should return null when formName and fields are provided but formResponse is null', async () => {
+    const formResponse = {
+      formName: 'Form',
+      id: 1,
+      formResponses: [
+        {
+          name: 'Name',
+          value: 'value',
+        },
+      ],
+    };
+    const formName = 'Form';
+    const fields = { name: 'Name' };
+    jest.spyOn(contentFormResponse, 'findOne').mockResolvedValue(null);
+    jest.spyOn(contentFormResponse, 'update').mockResolvedValue(formResponse);
+    const result = await contentFormResponseService.updateFromFieldUtils(
+      formName,
+      fields
+    );
+    expect(result).toEqual(null);
+  });
+  it('should return null when formName and fields are provided but formResponse is null', async () => {
+    const formResponse = {
+      formName: 'Form',
+      id: 1,
+      formResponses: [],
+    };
+    const formName = 'Form';
+    const fields = { name: 'Name' };
+    jest.spyOn(contentFormResponse, 'findOne').mockResolvedValue(formResponse);
+    jest.spyOn(contentFormResponse, 'update').mockResolvedValue(formResponse);
+    const result = await contentFormResponseService.updateFromFieldUtils(
+      formName,
+      fields
+    );
+    expect(result).toEqual(undefined);
   });
 });
